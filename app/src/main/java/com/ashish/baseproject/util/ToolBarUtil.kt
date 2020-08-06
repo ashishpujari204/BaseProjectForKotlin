@@ -15,6 +15,5 @@ class ToolBarUtil {
             toolbar.findViewById<ImageView>(R.id.toolbarBackButton).visibility= View.GONE
         }
         toolbar.findViewById<TextViewRegular>(R.id.tvToolbarText).text = headTitle
-
     }
 }

@@ -5,7 +5,6 @@ import androidx.lifecycle.Observer
 import com.ashish.baseproject.R
 import com.ashish.baseproject.network.RepositoryImplementation
 import com.ashish.baseproject.ui.baseactivity.BaseActivity
-import com.ashish.baseproject.util.Constants.Companion.KEYSTORE_HELPER_ALIES
 import com.ashish.baseproject.util.NetworkUtils
 import com.ashish.baseproject.util.ToolBarUtil
 import com.ashish.baseproject.util.showView
@@ -25,20 +24,22 @@ class MainActivity : BaseActivity() {
     5	/delete/{id}	DELETE	JSON	http://dummy.restapiexample.com/api/v1/delete/2	Delete an employee record	Details
 
      */
-    private val repositoryImplementation: RepositoryImplementation by inject<RepositoryImplementation>()
+    private val repositoryImplementation: RepositoryImplementation by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         showProgressDialog()
 
         ToolBarUtil(this, "Home", false)
 
-        NetworkUtils.getNetworkLiveData(applicationContext).observe(this, Observer { isConnected ->
-            if (!isConnected) {
+        NetworkUtils.getNetworkLiveData(this@MainActivity).observe(this, Observer { isConnected ->
+            if (isConnected) {
                 CoroutineScope(Dispatchers.Main).launch {
                     repositoryImplementation.getSampleData(this@MainActivity)
                         .observe(this@MainActivity, Observer {
-                            textView.apply{showView()}
+                            textView.apply { showView() }
+                            textView.text = it
                             stopProgressDialog()
                         })
                 }

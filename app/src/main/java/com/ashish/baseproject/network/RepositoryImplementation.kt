@@ -6,9 +6,7 @@ import android.app.Application
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.Flowable
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -49,9 +47,8 @@ open class RepositoryImplementation(
         val userData = MutableLiveData<String>()
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                val response = apiInterface.getData().await()
+                val response = apiInterface.getDataAsync().await()
                 userData.value = response.body().toString()
-
             } catch (t: Throwable) {
                 userData.value = null
                 if (handleException(t)) {

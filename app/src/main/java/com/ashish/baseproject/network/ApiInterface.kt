@@ -9,6 +9,6 @@ import retrofit2.http.*
 interface ApiInterface {
 
     @GET("api/v1/employees")
-     fun getData(): Deferred<Response<JsonObject>>
+    fun getDataAsync(): Deferred<Response<JsonObject>>
 
 }

@@ -8,8 +8,7 @@ class Constants {
     companion object {
 
         const val font_name = "Fonts/google_sans_regular.ttf"
-        const val PERFERENCES_NAME = "baseProject"
-
+        const val PREFERENCES_NAME = "baseProject"
         const val DEFAULT_VALUE = "NA"
 
         /**

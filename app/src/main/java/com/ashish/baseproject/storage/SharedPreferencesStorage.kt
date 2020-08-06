@@ -16,7 +16,7 @@ class SharedPreferencesStorage(context: Context) : Storage {
     private var sharedPreferences: SharedPreferences =
         EncryptedSharedPreferences.create(
             context,
-            Constants.PERFERENCES_NAME,
+            Constants.PREFERENCES_NAME,
             masterKey, // masterKey created above
             EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM)
