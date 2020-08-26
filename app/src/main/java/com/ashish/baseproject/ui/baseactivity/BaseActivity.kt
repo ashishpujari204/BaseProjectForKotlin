@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.ActivityInfo
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -30,10 +32,10 @@ abstract class BaseActivity : AppCompatActivity() {
         val adb = AlertDialog.Builder(this)
         val view: View =
             layoutInflater.inflate(R.layout.custom_progress_bar, null)
-        val tv = view.findViewById<View>(R.id.idTextViewMessage) as TextView
-        tv.text = resources.getString(R.string.loading)
+        val pb = view.findViewById<View>(R.id.progressBar) as ProgressBar
         adb.setView(view)
         alertDialogProgressBar = adb.create()
+        alertDialogProgressBar.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
         alertDialogProgressBar.setCancelable(false)
         alertDialogProgressBar.show()
     }
